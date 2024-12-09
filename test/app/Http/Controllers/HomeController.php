@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,22 +25,48 @@ class HomeController extends Controller
 
     public function index()
     {
-        // $salesPerMonth = Sale::selectRaw('MONTH(created_at) as month, SUM(total) as total')
-        //     ->groupBy('month')
-        //     ->pluck('total', 'month');
+        $data1 = DB::table('userCourse as uc')
+            ->select('u.username', 'c.course', 'c.mentor', 'c.title')
+            ->join('users as u', 'u.id', '=', 'uc.id_user')
+            ->join('courses as c', 'c.id', '=', 'uc.id_course')
+            ->get();
 
-        // $salesPerItem = SaleItem::join('master_items', 'sale_item.item_id', '=', 'master_items.id')
-        //     ->select('master_items.name', SaleItem::raw('SUM(qty) as total'))
-        //     ->groupBy('master_items.name')
-        //     ->pluck('total', 'master_items.name');
+        $data2 = DB::table('userCourse as uc')
+            ->select('u.username', 'c.course', 'c.mentor', 'c.title')
+            ->join('users as u', 'u.id', '=', 'uc.id_user')
+            ->join('courses as c', 'c.id', '=', 'uc.id_course')
+            ->where('c.title', 'LIKE', 'S%')
+            ->get();
 
-        // $totalSales = Sale::count();
+        $data3 = DB::table('userCourse as uc')
+            ->select('u.username', 'c.course', 'c.mentor', 'c.title')
+            ->join('users as u', 'u.id', '=', 'uc.id_user')
+            ->join('courses as c', 'c.id', '=', 'uc.id_course')
+            ->where('c.title', 'NOT LIKE', 'S%')
+            ->get();
 
-        // $totalSalesAmount = Sale::sum('total');
 
-        // $totalQty = SaleItem::sum('qty');
+        $data4 = DB::table('courses as c')
+            ->select('c.course', 'c.mentor', 'c.title', DB::raw('COUNT(uc.id_user) AS jumlah_peserta'))
+            ->join('userCourse as uc', 'c.id', '=', 'uc.id_course')
+            ->groupBy('c.course', 'c.mentor', 'c.title')
+            ->having('jumlah_peserta', '>', 0)
+            ->get();
 
-        // return view('home', compact('salesPerMonth', 'salesPerItem', 'totalSales', 'totalSalesAmount', 'totalQty'));
-        return view('home');
+
+        $data5 = DB::table('courses as c')
+            ->select('c.mentor', DB::raw('COUNT(uc.id_user) AS jumlah_peserta'), DB::raw('COUNT(uc.id_user) * 2000000 AS total_fee'))
+            ->join('userCourse as uc', 'c.id', '=', 'uc.id_course')
+            ->groupBy('c.mentor')
+            ->get();
+
+
+        return view('home', [
+            'data1' => $data1,
+            'data2' => $data2,
+            'data3' => $data3,
+            'data4' => $data4,
+            'data5' => $data5,
+        ]);
     }
 }

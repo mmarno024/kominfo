@@ -9,10 +9,6 @@
                         <h4 class="text-warning">
                             <strong>Selamat Datang di Halaman Administrator</strong>
                         </h4>
-                        <h5 class="text-secondary">
-                            <strong>Ini adalah aplikasi sederhana CRUD menggunakan Laravel
-                                9.19</strong>
-                        </h5>
                         <hr>
                     </div>
                     <div class="col-sm-12">
@@ -34,87 +30,193 @@
             </div>
         </div>
     </div>
-    {{-- <div class="row">
-        <div class="col-lg-4 col-sm-12">
-            <div class="card gradient-1">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-white">Jumlah Transaksi</h3>
-                    <div class="d-inline-block">
-                        <h2 class="text-white">{{ $totalSales }}</h2>
-                    </div>
-                    <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-12">
-            <div class="card gradient-2">
-                <div class="card-body">
-                    <h3 class="card-title text-white">Jumlah Penjualan</h3>
-                    <div class="d-inline-block">
-                        <h2 class="text-white">Rp. {{ number_format($totalSalesAmount, 2, ',', '.') }}</h2>
-                    </div>
-                    <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-12">
-            <div class="card gradient-3">
-                <div class="card-body">
-                    <h3 class="card-title text-white">Jumlah Item Terjual</h3>
-                    <div class="d-inline-block">
-                        <h2 class="text-white">Qty. {{ $totalQty }}</h2>
-                    </div>
-                    <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
+                    <h4 class="card-title">Data 1</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Course</th>
+                                <th>Mentor</th>
+                                <th>Title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data1 as $item)
+                                <tr>
+                                    <td>{{ $item->username }}</td>
+                                    <td>{{ $item->course }}</td>
+                                    <td>{{ $item->mentor }}</td>
+                                    <td>{{ $item->title }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-md-12">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Jumlah Penjualan per Bulan</h4>
-                    <canvas id="salesPerMonthChart"></canvas>
+                    <h4 class="card-title">Data 2</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Course</th>
+                                <th>Mentor</th>
+                                <th>Title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data2 as $item)
+                                <tr>
+                                    <td>{{ $item->username }}</td>
+                                    <td>{{ $item->course }}</td>
+                                    <td>{{ $item->mentor }}</td>
+                                    <td>{{ $item->title }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-md-12">
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Jumlah Penjualan per Item</h4>
-                    <canvas id="salesPerItemChart"></canvas>
+                    <h4 class="card-title">Data 3</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Course</th>
+                                <th>Mentor</th>
+                                <th>Title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data3 as $item)
+                                <tr>
+                                    <td>{{ $item->username }}</td>
+                                    <td>{{ $item->course }}</td>
+                                    <td>{{ $item->mentor }}</td>
+                                    <td>{{ $item->title }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Data 4</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Mentor</th>
+                                <th>Title</th>
+                                <th>Jumlah Peserta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data4 as $item)
+                                <tr>
+                                    <td>{{ $item->course }}</td>
+                                    <td>{{ $item->mentor }}</td>
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->jumlah_peserta }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Data 5</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Mentor</th>
+                                <th>Jumlah Peserta</th>
+                                <th>Total Fee</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data5 as $item)
+                                <tr>
+                                    <td>{{ $item->mentor }}</td>
+                                    <td>{{ $item->jumlah_peserta }}</td>
+                                    <td>{{ $item->total_fee }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="card gradient-1">
+                <div class="card-body">
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Grafik Data 4</h4>
+                                <canvas id="data4Chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Grafik Data 5</h4>
+                                <canvas id="data5Chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    {{-- <script>
-        var salesPerMonthData = @json($salesPerMonth);
-        var salesPerItemData = @json($salesPerItem);
+    <script>
+        var data4 = @json($data4);
+        var data5 = @json($data5);
 
-        var salesPerMonthLabels = Object.keys(salesPerMonthData).map(month => {
-            return new Date(0, month - 1).toLocaleString('default', {
-                month: 'long'
-            });
-        });
-        var salesPerMonthValues = Object.values(salesPerMonthData);
-
-        var salesPerItemLabels = Object.keys(salesPerItemData);
-        var salesPerItemValues = Object.values(salesPerItemData);
-
-        var ctx = document.getElementById('salesPerMonthChart').getContext('2d');
-        var salesPerMonthChart = new Chart(ctx, {
-            type: 'bar',
+        var ctxData4 = document.getElementById('data4Chart').getContext('2d');
+        var data4Chart = new Chart(ctxData4, {
+            type: 'line',
             data: {
-                labels: salesPerMonthLabels,
+                labels: Object.keys(data4),
                 datasets: [{
-                    label: 'Penjualan (Rupiah)',
-                    data: salesPerMonthValues,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    label: 'Data 4',
+                    data: Object.values(data4),
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderWidth: 1
                 }]
             },
@@ -127,28 +229,16 @@
             }
         });
 
-        var ctx = document.getElementById('salesPerItemChart').getContext('2d');
-        var salesPerItemChart = new Chart(ctx, {
-            type: 'bar',
+        var ctxData5 = document.getElementById('data5Chart').getContext('2d');
+        var data5Chart = new Chart(ctxData5, {
+            type: 'line',
             data: {
-                labels: salesPerItemLabels,
+                labels: Object.keys(data5),
                 datasets: [{
-                    label: 'Penjualan (Qty)',
-                    data: salesPerItemValues,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)'
-                    ],
+                    label: 'Data 5',
+                    data: Object.values(data5),
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderWidth: 1
                 }]
             },
@@ -160,5 +250,5 @@
                 }
             }
         });
-    </script> --}}
+    </script>
 @endpush

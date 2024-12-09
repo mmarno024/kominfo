@@ -5,12 +5,12 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header bg-primary text-white rounded-top">
-                    MASTER USER
+                    USER COURSE
                 </div>
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-lg-12 col-sm-12">
-                            <a href="{{ url('users/create') }}" class="btn btn-info"><i class="fa fa-plus"></i> Tambah User</a>
+                            <a href="{{ url('users/create') }}" class="btn btn-info"><i class="fa fa-plus"></i> Tambah User Course</a>
                         </div>
                     </div>
                     <table id="usersTable" class="table table-bordered">

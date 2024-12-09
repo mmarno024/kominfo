@@ -39,18 +39,14 @@ class UserCourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'description' => 'nullable|string',
-            'stock' => 'required|integer',
+            'id_user' => 'required',
+            'id_course' => 'required',
         ]);
 
         $usercourse = new UserCourse();
-        $usercourse->code = $request->code;
-        $usercourse->name = $request->name;
-        
+        $usercourse->id_user = $request->id_user;
+        $usercourse->id_course = $request->id_course;
+
         $usercourse->save();
 
         return redirect()->route('usercourses.index')->with('success', 'User Course created successfully.');
@@ -60,22 +56,18 @@ class UserCourseController extends Controller
         if (request()->ajax()) {
             return response()->json($usercourse);
         }
-        return view('master.usercourses.show', compact('item'));
+        return view('usercourses.show', compact('item'));
     }
     public function edit(UserCourse $usercourse)
     {
-        return view('master.usercourses.edit', compact('item'));
+        return view('usercourses.edit', compact('item'));
     }
 
     public function update(Request $request, UserCourse $usercourse)
     {
         $request->validate([
-            'code' => 'required|unique:master_usercourses,code,' . $usercourse->id,
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'image' => 'nullable|image',
-            'description' => 'nullable',
-            'stock' => 'required|integer',
+            'id_user' => 'required',
+            'id_course' => 'required',
         ]);
 
         $usercourse->save();
