@@ -15,4 +15,14 @@ class UserCourse extends Model
     ];
     protected $table = 'usercourse';
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'id_course', 'id');
+    }
 }

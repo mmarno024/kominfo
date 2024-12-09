@@ -60,6 +60,18 @@ class HomeController extends Controller
             ->groupBy('c.mentor')
             ->get();
 
+        $grafik1 = DB::table('courses as c')
+            ->select('c.title', DB::raw('COUNT(uc.id_user) AS jumlah_peserta'))
+            ->join('userCourse as uc', 'c.id', '=', 'uc.id_course')
+            ->groupBy('c.title')
+            ->get();
+
+        $grafik2 = DB::table('courses as c')
+            ->select('c.mentor', DB::raw('COUNT(uc.id_user) AS jumlah_peserta'), DB::raw('COUNT(uc.id_user) * 2000000 AS total_fee'))
+            ->join('userCourse as uc', 'c.id', '=', 'uc.id_course')
+            ->groupBy('c.mentor')
+            ->get();
+
 
         return view('home', [
             'data1' => $data1,
@@ -67,6 +79,8 @@ class HomeController extends Controller
             'data3' => $data3,
             'data4' => $data4,
             'data5' => $data5,
+            'grafik1' => $grafik1,
+            'grafik2' => $grafik2,
         ]);
     }
 }

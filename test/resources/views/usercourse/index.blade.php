@@ -10,7 +10,8 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-lg-12 col-sm-12">
-                            <a href="{{ url('users/create') }}" class="btn btn-info"><i class="fa fa-plus"></i> Tambah User
+                            <a href="{{ url('usercourse/create') }}" class="btn btn-info"><i class="fa fa-plus"></i> Tambah
+                                User
                                 Course</a>
                         </div>
                     </div>
@@ -88,7 +89,7 @@
         $('#usercourseTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ route('users.index') }}',
+            ajax: '{{ route('usercourse.index') }}',
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -97,12 +98,12 @@
                     className: 'text-center'
                 },
                 {
-                    data: 'user',
-                    name: 'user'
+                    data: 'user.username',
+                    name: 'user.username'
                 },
                 {
-                    data: 'course',
-                    name: 'course'
+                    data: 'course.course',
+                    name: 'course.course'
                 },
                 {
                     data: 'action',
@@ -114,13 +115,13 @@
         });
 
         $('#usercourseTable').on('click', '.btn-detail', function() {
-            var userId = $(this).data('id');
+            var userCourseId = $(this).data('id');
             $.ajax({
-                url: '/usercourses/' + userId,
+                url: '/usercourse/' + userCourseId,
                 method: 'GET',
                 success: function(data) {
-                    $('#xUser').text(data.id_user);
-                    $('#xCourse').text(data.id_course);
+                    $('#xUser').text(data.user.username);
+                    $('#xCourse').text(data.course.course);
                     $('#userDetailModal').modal('show');
                 }
             });

@@ -7,14 +7,20 @@
                     EDIT USER COURSE
                 </div>
                 <div class="card-body">
-                    <form id="editUserForm" action="{{ route('usercourse.update', $user->id) }}" method="POST">
+                    <form id="editUserCourseForm" action="{{ route('usercourse.update', $usercourse->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
                                 <label>Username</label>
-                                <input type="text" class="form-control" name="username" value="{{ $user->username }}"
-                                    placeholder="Nama">
+                                <select class="form-control" name="username">
+                                    @foreach ($users as $userOption)
+                                        <option value="{{ $userOption->id }}"
+                                            {{ $user->id == $userOption->id ? 'selected' : '' }}>
+                                            {{ $userOption->username }}
+                                        </option>
+                                    @endforeach
+                                </select>
                                 @error('username')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -23,9 +29,15 @@
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
                                 <label>Course</label>
-                                <input type="text" class="form-control" name="course" value="{{ $user->course }}"
-                                    placeholder="Course">
-                                @error('course')
+                                <select class="form-control" name="course_id">
+                                    @foreach ($courses as $courseOption)
+                                        <option value="{{ $courseOption->id }}"
+                                            {{ $user->course_id == $courseOption->id ? 'selected' : '' }}>
+                                            {{ $courseOption->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('course_id')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -49,7 +61,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#editUserForm').on('submit', function(e) {
+        $('#editUserCourseForm').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
                 type: 'POST',

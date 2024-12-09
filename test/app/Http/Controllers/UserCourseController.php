@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\User;
 use App\Models\UserCourse;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class UserCourseController extends Controller
@@ -13,13 +15,14 @@ class UserCourseController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $usercourse = UserCourse::select(['id_user', 'id_course']);
+            // $usercourse = UserCourse::select(['id', 'id_user', 'id_course']);
+            $usercourse = UserCourse::with(['user', 'course']);
             return DataTables::of($usercourse)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     return '<button class="btn btn-info btn-detail" data-id="' . $row->id . '">Detail</button>
-                            <a class="btn btn-warning text-white" href="' . route('usercourse.edit', $row->id) . '">Edit</a>
-                            <form action="' . route('usercourse.destroy', $row->id) . '" method="POST" style="display:inline;" onsubmit="return confirmDelete(event, this);">
+                            <a class="btn btn-warning text-white" href="' . route('usercourse.edit', $row) . '">Edit</a>
+                            <form action="' . route('usercourse.destroy', $row) . '" method="POST" style="display:inline;" onsubmit="return confirmDelete(event, this);">
                                 ' . csrf_field() . '
                                 ' . method_field('DELETE') . '
                                 <button class="btn btn-danger" type="submit">Delete</button>
@@ -33,7 +36,9 @@ class UserCourseController extends Controller
 
     public function create()
     {
-        return view('usercourse.create');
+        $users = User::all();
+        $courses = Course::all();
+        return view('usercourse.create', compact('users', 'courses'));
     }
 
     public function store(Request $request)
@@ -56,11 +61,15 @@ class UserCourseController extends Controller
         if (request()->ajax()) {
             return response()->json($usercourse);
         }
-        return view('usercourse.show', compact('item'));
+        return view('usercourse.show', compact('usercourse'));
     }
-    public function edit(UserCourse $usercourse)
+    public function edit(UserCourse $usercourse, $id)
     {
-        return view('usercourse.edit', compact('item'));
+        $usercourse = UserCourse::findOrFail($id);
+        $users = User::all();
+        $courses = Course::all();
+
+        return view('usercourse.edit', compact('usercourse', 'users', 'courses'));
     }
 
     public function update(Request $request, UserCourse $usercourse)

@@ -7,12 +7,17 @@
                     TAMBAH USER COURSE
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('users.store') }}" method="POST">
+                    <form action="{{ route('usercourse.store') }}" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
                                 <label>Username</label>
-                                <input type="text" class="form-control" name="username" placeholder="Username">
+                                <select class="form-control" name="id_user">
+                                    <option value="">Pilih Username</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->username }}</option>
+                                    @endforeach
+                                </select>
                                 @error('username')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -21,7 +26,12 @@
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
                                 <label>Course</label>
-                                <input type="text" class="form-control" name="course" placeholder="Course">
+                                <select class="form-control" name="id_course">
+                                    <option value="">Pilih Course</option>
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}">{{ $course->course }}</option>
+                                    @endforeach
+                                </select>
                                 @error('course')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -30,7 +40,8 @@
 
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
-                                <a href="{{ route('users.index') }}" class="btn btn-danger"><i class="fa fa-arrow-left"></i>
+                                <a href="{{ route('usercourse.index') }}" class="btn btn-danger"><i
+                                        class="fa fa-arrow-left"></i>
                                     Kembali</a>
                                 <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Simpan User
                                     Course</button>
@@ -53,7 +64,7 @@
                 method: 'POST',
                 data: $(this).serialize(),
                 success: function(response) {
-                    window.location.href = "{{ route('users.index') }}";
+                    window.location.href = "{{ route('usercourse.index') }}";
                 },
                 error: function(xhr) {
                     let errors = xhr.responseJSON.errors;

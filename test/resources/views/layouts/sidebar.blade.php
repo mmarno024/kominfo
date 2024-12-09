@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/usercourses') }}" aria-expanded="false">
+                <a href="{{ url('/usercourse') }}" aria-expanded="false">
                     <i class="fa fa-edit menu-icon"></i><span class="nav-text">User Course</span>
                 </a>
             </li>

@@ -177,24 +177,22 @@
         <div class="col-lg-12 col-sm-12">
             <div class="card gradient-1">
                 <div class="card-body">
-
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Grafik Data 4</h4>
-                                <canvas id="data4Chart"></canvas>
+                                <h4 class="card-title">Grafik 1</h4>
+                                <canvas id="grafik1Chart"></canvas>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Grafik Data 5</h4>
-                                <canvas id="data5Chart"></canvas>
+                                <h4 class="card-title">Grafik 2</h4>
+                                <canvas id="grafik2Chart"></canvas>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -204,19 +202,17 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        var data4 = @json($data4);
-        var data5 = @json($data5);
-
-        var ctxData4 = document.getElementById('data4Chart').getContext('2d');
-        var data4Chart = new Chart(ctxData4, {
-            type: 'line',
+        var grafik1 = @json($grafik1);
+        var ctxgrafik1 = document.getElementById('grafik1Chart').getContext('2d');
+        var grafik1Chart = new Chart(ctxgrafik1, {
+            type: 'bar',
             data: {
-                labels: Object.keys(data4),
+                labels: grafik1.map(item => item.title),
                 datasets: [{
-                    label: 'Data 4',
-                    data: Object.values(data4),
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    label: 'Jumlah Peserta',
+                    data: grafik1.map(item => item.jumlah_peserta),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
                 }]
             },
@@ -229,16 +225,17 @@
             }
         });
 
-        var ctxData5 = document.getElementById('data5Chart').getContext('2d');
-        var data5Chart = new Chart(ctxData5, {
-            type: 'line',
+        var grafik2 = @json($grafik2);
+        var ctxgrafik2 = document.getElementById('grafik2Chart').getContext('2d');
+        var grafik2Chart = new Chart(ctxgrafik2, {
+            type: 'bar',
             data: {
-                labels: Object.keys(data5),
+                labels: grafik2.map(item => item.mentor),
                 datasets: [{
-                    label: 'Data 5',
-                    data: Object.values(data5),
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    label: 'Total Fee',
+                    data: grafik2.map(item => item.total_fee),
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
                     borderWidth: 1
                 }]
             },

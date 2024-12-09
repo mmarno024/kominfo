@@ -3,8 +3,6 @@
 use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\Master\ItemController;
-use App\Http\Controllers\Transaction\SaleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
