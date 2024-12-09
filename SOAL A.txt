@@ -1,0 +1,108 @@
+-- CRETE DATABASE
+CREATE DATABASE `sekolahku`;
+
+-- SELECT DATABASE
+USE `sekolahku`;
+
+-- 1. CREATE TABLE "users"
+CREATE TABLE users (
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(50) NOT NULL,
+    `password` VARCHAR(50) NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- INSERT DATA TO TABLE "users"
+INSERT INTO users (`username`, `email`, `password`, `created_at`, `updated_at`)
+VALUES
+('Andi','andi@andi.com','12345','2019-01-28 05:15:29','2019-01-28 05:15:29'),
+('Budi','budi@budi.com','67890','2019-01-28 05:15:29','2019-01-28 05:15:29'),
+('Caca','caca@caca.com','abcde','2019-01-28 05:15:29','2019-01-28 05:15:29'),
+('Deni','deni@deni.com','fghij','2019-01-28 05:15:29','2019-01-28 05:15:29'),
+('Euis','euis@euis.com','klmno','2019-01-28 05:15:29','2019-01-28 05:15:29'),
+('Fafa','fafa@fafa.com','pqrst','2019-01-28 05:15:29','2019-01-28 05:15:29');
+
+-- 2. CREATE TABLE "courses"
+CREATE TABLE courses (
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `course` VARCHAR(50) NOT NULL,
+    `mentor` VARCHAR(50) NOT NULL,
+    `title` VARCHAR(50) NOT NULL
+);
+
+-- INSERT DATA TO TABLE "courses"
+INSERT INTO courses (`course`,`mentor`,`title`)
+VALUES
+('C++','Ari','Dr.'),
+('C#','Ari','Dr.'),
+('C#','Ari','Dr.'),
+('CSS','Cania','S.Kom'),
+('HTML','Cania','S.Kom'),
+('Javascript','Cania','S.Kom'),
+('Python','Barry','S.T'),
+('Micropython','Barry','S.T'),
+('Java','Darren','M.T'),
+('Ruby','Darren','M.T');
+
+-- 3. CREATE TABLE "userCourse"
+CREATE TABLE userCourse (
+    `id_user` INT(11),
+    `id_course` INT(11)
+);
+
+-- INSERT DATA TO TABLE "userCourse"
+INSERT INTO userCourse ()
+VALUES
+(1,1),
+(1,2),
+(1,3),
+(2,4),
+(2,5),
+(2,6),
+(3,7),
+(3,8),
+(3,9),
+(4,1),
+(4,2),
+(4,3),
+(5,4),
+(5,5),
+(5,6),
+(6,7),
+(6,8),
+(6,9);
+
+-- 4. SHOW LIST DATA
+SELECT u.username, c.course, c.mentor, c.title
+FROM userCourse uc
+INNER JOIN users u ON u.id=uc.id_user
+INNER JOIN courses c ON c.id=uc.id_course;
+
+-- 5. SHOW LIST DATA
+SELECT u.username, c.course, c.mentor, c.title
+FROM userCourse uc
+INNER JOIN users u ON u.id=uc.id_user
+INNER JOIN courses c ON c.id=uc.id_course
+WHERE c.title LIKE 'S%';
+
+-- 6. SHOW LIST DATA
+SELECT u.username, c.course, c.mentor, c.title
+FROM userCourse uc
+INNER JOIN users u ON u.id=uc.id_user
+INNER JOIN courses c ON c.id=uc.id_course
+WHERE c.title NOT LIKE 'S%';
+
+-- 7. SHOW LIST DATA
+SELECT c.course, c.mentor, c.title, COUNT(uc.id_user) AS jumlah_peserta
+FROM courses c
+INNER JOIN userCourse uc ON c.id = uc.id_course
+GROUP BY c.course, c.mentor, c.title
+HAVING jumlah_peserta > 0;
+
+-- 8. SHOW LIST DATA
+SELECT c.mentor ,COUNT(uc.id_user) AS jumlah_peserta ,COUNT(uc.id_user) * 2000000 AS total_fee
+FROM courses c
+INNER JOIN userCourse uc ON c.id = uc.id_course
+GROUP BY c.mentor;
