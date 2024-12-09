@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header bg-primary text-white rounded-top">
-                    TAMBAH USER
+                    TAMBAH USER COURSE
                 </div>
                 <div class="card-body">
                     <form action="{{ route('users.store') }}" method="POST">
@@ -20,49 +20,20 @@
                         </div>
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
-                                <label>Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Email">
-                                @error('email')
+                                <label>Course</label>
+                                <input type="text" class="form-control" name="course" placeholder="Course">
+                                @error('course')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="form-group col-md-12">
-                                <label>Role</label>
-                                <select name="role" class="form-control">
-                                    <option value="Admin">Admin</option>
-                                    <option value="User">User</option>
-                                </select>
-                                @error('role')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="form-group col-md-12">
-                                <label>Password</label>
-                                <input type="password" class="form-control" name="password" placeholder="Password">
-                                @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="form-group col-md-12">
-                                <label>Konfirmasi Password</label>
-                                <input type="password" class="form-control" name="password_confirmation"
-                                    placeholder="Password Confirmation">
-                                @error('password_confirmation')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
+
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
                                 <a href="{{ route('users.index') }}" class="btn btn-danger"><i class="fa fa-arrow-left"></i>
                                     Kembali</a>
-                                <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Simpan User</button>
+                                <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Simpan User
+                                    Course</button>
                             </div>
                         </div>
                     </form>

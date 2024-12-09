@@ -12,8 +12,6 @@
 -   Create <strong>Database</strong> in MySQL
 -   Copy <strong>.env.example</strong>, rename to <strong>.env</strong> and edit connection database
 -   Run <strong>php artisan migrate</strong>
--   Run <strong>php artisan db:seed --class=UserSeeder</strong>
--   Run <strong>php artisan db:seed --class=ItemSeeder</strong>
 -   Run <strong>php artisan cache:clear</strong>
 -   Run <strong>php artisan route:clear</strong>
 -   Run <strong>php artisan config:cache</strong>

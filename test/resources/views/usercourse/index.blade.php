@@ -10,16 +10,16 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-lg-12 col-sm-12">
-                            <a href="{{ url('users/create') }}" class="btn btn-info"><i class="fa fa-plus"></i> Tambah User Course</a>
+                            <a href="{{ url('users/create') }}" class="btn btn-info"><i class="fa fa-plus"></i> Tambah User
+                                Course</a>
                         </div>
                     </div>
-                    <table id="usersTable" class="table table-bordered">
+                    <table id="usercourseTable" class="table table-bordered">
                         <thead>
                             <tr class="text-center">
                                 <th>No</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Role</th>
+                                <th>User</th>
+                                <th>Course</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -34,7 +34,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title text-white" id="userDetailModalLabel">User Detail</h5>
+                    <h5 class="modal-title text-white" id="userDetailModalLabel">User Course Detail</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -42,19 +42,14 @@
                 <div class="modal-body">
                     <table class="table table-bordered">
                         <tr>
-                            <td><strong>Username</strong></td>
+                            <td><strong>User</strong></td>
                             <td align="center">:</td>
-                            <td><span id="userName"></span></td>
+                            <td><span id="xUser"></span></td>
                         </tr>
                         <tr>
-                            <td><strong>Email</strong></td>
+                            <td><strong>Course</strong></td>
                             <td align="center">:</td>
-                            <td><span id="userEmail"></span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Role</strong></td>
-                            <td align="center">:</td>
-                            <td><span id="userRole"></span></td>
+                            <td><span id="xCourse"></span></td>
                         </tr>
                     </table>
                 </div>
@@ -90,7 +85,7 @@
 
     jQuery.noConflict();
     jQuery(document).ready(function($) {
-        $('#usersTable').DataTable({
+        $('#usercourseTable').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{{ route('users.index') }}',
@@ -102,16 +97,12 @@
                     className: 'text-center'
                 },
                 {
-                    data: 'username',
-                    name: 'username'
+                    data: 'user',
+                    name: 'user'
                 },
                 {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
-                    data: 'role',
-                    name: 'role'
+                    data: 'course',
+                    name: 'course'
                 },
                 {
                     data: 'action',
@@ -122,15 +113,14 @@
             ]
         });
 
-        $('#usersTable').on('click', '.btn-detail', function() {
+        $('#usercourseTable').on('click', '.btn-detail', function() {
             var userId = $(this).data('id');
             $.ajax({
-                url: '/users/' + userId,
+                url: '/usercourses/' + userId,
                 method: 'GET',
                 success: function(data) {
-                    $('#userName').text(data.username);
-                    $('#userEmail').text(data.email);
-                    $('#userRole').text(data.role);
+                    $('#xUser').text(data.id_user);
+                    $('#xCourse').text(data.id_course);
                     $('#userDetailModal').modal('show');
                 }
             });

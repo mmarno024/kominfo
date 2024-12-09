@@ -13,13 +13,13 @@ class UserCourseController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $usercourses = UserCourse::select(['id_user', 'id_course']);
-            return DataTables::of($usercourses)
+            $usercourse = UserCourse::select(['id_user', 'id_course']);
+            return DataTables::of($usercourse)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     return '<button class="btn btn-info btn-detail" data-id="' . $row->id . '">Detail</button>
-                            <a class="btn btn-warning text-white" href="' . route('usercourses.edit', $row->id) . '">Edit</a>
-                            <form action="' . route('usercourses.destroy', $row->id) . '" method="POST" style="display:inline;" onsubmit="return confirmDelete(event, this);">
+                            <a class="btn btn-warning text-white" href="' . route('usercourse.edit', $row->id) . '">Edit</a>
+                            <form action="' . route('usercourse.destroy', $row->id) . '" method="POST" style="display:inline;" onsubmit="return confirmDelete(event, this);">
                                 ' . csrf_field() . '
                                 ' . method_field('DELETE') . '
                                 <button class="btn btn-danger" type="submit">Delete</button>
@@ -28,12 +28,12 @@ class UserCourseController extends Controller
                 ->make(true);
         }
 
-        return view('master.usercourses.index');
+        return view('usercourse.index');
     }
 
     public function create()
     {
-        return view('master.usercourses.create');
+        return view('usercourse.create');
     }
 
     public function store(Request $request)
@@ -49,18 +49,18 @@ class UserCourseController extends Controller
 
         $usercourse->save();
 
-        return redirect()->route('usercourses.index')->with('success', 'User Course created successfully.');
+        return redirect()->route('usercourse.index')->with('success', 'User Course created successfully.');
     }
     public function show(UserCourse $usercourse)
     {
         if (request()->ajax()) {
             return response()->json($usercourse);
         }
-        return view('usercourses.show', compact('item'));
+        return view('usercourse.show', compact('item'));
     }
     public function edit(UserCourse $usercourse)
     {
-        return view('usercourses.edit', compact('item'));
+        return view('usercourse.edit', compact('item'));
     }
 
     public function update(Request $request, UserCourse $usercourse)
@@ -77,6 +77,6 @@ class UserCourseController extends Controller
     public function destroy(UserCourse $usercourse)
     {
         $usercourse->delete();
-        return redirect()->route('usercourses.index')->with('success', 'User Course deleted successfully.');
+        return redirect()->route('usercourse.index')->with('success', 'User Course deleted successfully.');
     }
 }

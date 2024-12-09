@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\Master\ItemController;
@@ -31,4 +32,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('users', UserController::class);
     Route::resource('courses', CourseController::class);
+    Route::resource('usercourse', UserCourseController::class);
 });

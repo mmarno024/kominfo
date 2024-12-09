@@ -4,10 +4,10 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header bg-primary text-white rounded-top">
-                    EDIT USER
+                    EDIT USER COURSE
                 </div>
                 <div class="card-body">
-                    <form id="editUserForm" action="{{ route('users.update', $user->id) }}" method="POST">
+                    <form id="editUserForm" action="{{ route('usercourse.update', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
@@ -22,61 +22,17 @@
                         </div>
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
-                                <label>Email</label>
-                                <input type="email" class="form-control" name="email" value="{{ $user->email }}"
-                                    placeholder="Email">
-                                @error('email')
+                                <label>Course</label>
+                                <input type="text" class="form-control" name="course" value="{{ $user->course }}"
+                                    placeholder="Course">
+                                @error('course')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
-                                <label>Role</label>
-                                <select name="role" class="form-control">
-                                    <option value="Laki-laki" {{ $user->role == 'Admin' ? 'selected' : '' }}>Admin
-                                    </option>
-                                    <option value="Perempuan" {{ $user->role == 'User' ? 'selected' : '' }}>User
-                                    </option>
-                                </select>
-                                @error('role')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="form-group col-md-12">
-                                <label>Password</label>
-                                <input type="password" class="form-control" name="password"
-                                    placeholder="Password (kosongkan jika tidak ingin mengubah)">
-                                @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="form-group col-md-12">
-                                <label>Konfirmasi Password</label>
-                                <input type="password" class="form-control" name="password_confirmation"
-                                    placeholder="Password Confirmation">
-                                @error('password_confirmation')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="form-group col-md-12">
-                                <label>Role</label>
-                                <input type="text" class="form-control" name="role" value="{{ $user->role }}"
-                                    placeholder="Role">
-                                @error('role')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="form-group col-md-12">
-                                <a href="{{ route('users.index') }}" class="btn btn-danger"><i
+                                <a href="{{ route('usercourse.index') }}" class="btn btn-danger"><i
                                         class="fa fa-arrow-left"></i>
                                     Kembali</a>
                                 <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Perbarui
@@ -100,7 +56,7 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 success: function(response) {
-                    window.location.href = "{{ route('users.index') }}";
+                    window.location.href = "{{ route('usercourse.index') }}";
                 },
                 error: function(xhr) {
                     let errors = xhr.responseJSON.errors;
