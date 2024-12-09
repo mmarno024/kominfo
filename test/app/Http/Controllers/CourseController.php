@@ -72,7 +72,9 @@ class CourseController extends Controller
             'title' => 'required',
         ]);
 
-        $course->save();
+        $data = $request->only('course', 'mentor', 'title');
+        $course->update($data);
+
         return response()->json(['success' => 'Course updated successfully.']);
     }
 

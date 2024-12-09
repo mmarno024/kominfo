@@ -7,7 +7,7 @@
                     TAMBAH COURSE
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('users.store') }}" method="POST">
+                    <form action="{{ route('courses.store') }}" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <div class="form-group col-md-12">
@@ -41,7 +41,7 @@
                             <div class="form-group col-md-12">
                                 <a href="{{ route('users.index') }}" class="btn btn-danger"><i class="fa fa-arrow-left"></i>
                                     Kembali</a>
-                                <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Simpan User</button>
+                                <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Simpan Course</button>
                             </div>
                         </div>
                     </form>

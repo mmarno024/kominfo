@@ -16,4 +16,5 @@ class Course extends Model
         'title',
     ];
     protected $table = 'courses';
+    public $timestamps = false;
 }

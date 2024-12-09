@@ -34,9 +34,9 @@
                             <div class="form-group col-md-12">
                                 <label>Role</label>
                                 <select name="role" class="form-control">
-                                    <option value="Laki-laki" {{ $user->role == 'Admin' ? 'selected' : '' }}>Admin
+                                    <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin
                                     </option>
-                                    <option value="Perempuan" {{ $user->role == 'User' ? 'selected' : '' }}>User
+                                    <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User
                                     </option>
                                 </select>
                                 @error('role')
@@ -60,16 +60,6 @@
                                 <input type="password" class="form-control" name="password_confirmation"
                                     placeholder="Password Confirmation">
                                 @error('password_confirmation')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="form-group col-md-12">
-                                <label>Role</label>
-                                <input type="text" class="form-control" name="role" value="{{ $user->role }}"
-                                    placeholder="Role">
-                                @error('role')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

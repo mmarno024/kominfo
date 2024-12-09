@@ -14,4 +14,5 @@ class UserCourse extends Model
         'id_course',
     ];
     protected $table = 'usercourse';
+    public $timestamps = false;
 }

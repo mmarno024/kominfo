@@ -31,8 +31,8 @@
                             <div class="form-group col-md-12">
                                 <label>Role</label>
                                 <select name="role" class="form-control">
-                                    <option value="Admin">Admin</option>
-                                    <option value="User">User</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
                                 </select>
                                 @error('role')
                                     <span class="text-danger">{{ $message }}</span>
